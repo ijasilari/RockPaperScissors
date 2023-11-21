@@ -5,7 +5,22 @@ let beater = "";
 let beaten = "";
 let playerScore = 0;
 let computerScore = 0;
+let round = 0;
 let validation = true;
+
+const rockBtn = document.querySelector('#rockBtn');
+const paperBtn = document.querySelector('#paperBtn');
+const scissorsBtn = document.querySelector('#scissorsBtn');
+const resultsDiv = document.querySelector('#results');
+const winOutputDiv = document.querySelector('#winOutput');
+const playerScoreP = document.querySelector('#playerScore');
+const computerScoreP = document.querySelector('#computerScore');
+
+rockBtn.addEventListener('click', () => playRound('rock', getComputerChoice() ));
+paperBtn.addEventListener('click', () => playRound('paper', getComputerChoice() ));
+scissorsBtn.addEventListener('click', () => playRound('scissors', getComputerChoice() ));
+
+
 
 function getComputerChoice(){
     const choices = ["rock", "paper", "scissors"];
@@ -32,7 +47,8 @@ function playRound(playerSelect, computerSelect){
     playerSelect = playerSelect.toLowerCase();
 
     if(playerSelect === computerSelect){
-        return "Draw!";
+        resultsDiv.textContent = "Draw!";
+        return;
     }else if(playerSelect === "rock"){
         if(computerSelect === "scissors"){
             winner(playerSelect, computerSelect);
@@ -43,29 +59,22 @@ function playRound(playerSelect, computerSelect){
         if(computerSelect === "paper"){
             winner(playerSelect, computerSelect);
         }else if(computerSelect === "rock"){
-            winner(playerSelect, computerSelect);
+            loser(playerSelect, computerSelect);
         }
     }else if(playerSelect === "paper"){
         if(computerSelect === "rock"){
             winner(playerSelect, computerSelect);
         }else if(computerSelect === "scissors"){
-            winner(playerSelect, computerSelect)
+            loser(playerSelect, computerSelect)
         }
-    }else{
-        invalid = true;
-        return "Invalid choice, try again";
     }
-    return result + beater + " beats " + beaten;
+
+    playerScoreP.textContent = "You: " + playerScore;
+    computerScoreP.textContent = "Computer: " + computerScore;
+    resultsDiv.textContent = result + beater + " beats " + beaten;
 }
 
 function game(){
-    for(let i = 0; i < 5; i++){
-        do{
-            console.log( playRound( prompt("Rock, Paper or Scissors!"), getComputerChoice()) );
-        }
-        while(invalid);
-        console.log("PlayerScore: " + playerScore + ", ComputerScore: " + computerScore);
-    }
 
     if(playerScore > computerScore){
         return "You won!";
@@ -74,4 +83,4 @@ function game(){
     }
 }
 
-console.log(game());
+winOutputDiv.textContent = game();
