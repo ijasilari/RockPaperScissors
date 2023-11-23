@@ -10,7 +10,9 @@
 
 .button:hover {
     top: -10px;
+    cursor: pointer;
 }
 .button:active {
     transform: translateY(4px);
+    
 }
