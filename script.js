@@ -79,12 +79,12 @@ function playRound(playerSelect, computerSelect){
     resultsDiv.textContent = result + beater + " beats " + beaten;
 
     if(computerScore >= 5){
-        winOutputDiv.textContent = "You lost :(";
+        winOutputDiv.textContent = "Game over. You lose :(";
         computerScore = 0;
         playerScore = 0;
         gameOver = true;
     }else if(playerScore >= 5){
-        winOutputDiv.textContent = "You win!";
+        winOutputDiv.textContent = "Game over. You win!";
         computerScore = 0;
         playerScore = 0;
         gameOver = true;

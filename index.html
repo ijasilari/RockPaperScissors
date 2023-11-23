@@ -3,22 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>RPS</title>
     <script src="script.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
 </head>
 <body>
     <div style="margin:auto; width: fit-content; text-align: center;" >
         <h1>Rock, Paper, Scissors</h1>
         <p>Rules: Who gets 5 points first wins</p>
         <div>
-            <div id="winOutput"></div>
-            <div id="results">
-            </div>
+            <div id="winOutput" style="height: 14px;"></div>
             <p id="playerScore">You: 0</p>
             <p id="computerScore">Computer: 0</p>
-            <button id="rockBtn">Rock</button>
-            <button id="paperBtn">Paper</button>
-            <button id="scissorsBtn">Scissors</button>
+            <button id="rockBtn" class="button">
+                <img src="rock.png" style="width: 80px;"/>
+            </button>
+            <button id="paperBtn" class="button">
+                <img src="paper.png" style="width: 80px;"/>
+            </button>
+            <button id="scissorsBtn" class="button">
+                <img src="scissors.png" style="width: 80px;"/>
+            </button>
+            <div id="results"></div>
         </div>
         
     </div>
