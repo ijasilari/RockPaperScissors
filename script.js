@@ -6,7 +6,7 @@ let beaten = "";
 let playerScore = 0;
 let computerScore = 0;
 let round = 0;
-let validation = true;
+let gameOver = false;
 
 const rockBtn = document.querySelector('#rockBtn');
 const paperBtn = document.querySelector('#paperBtn');
@@ -32,7 +32,6 @@ function winner(player, computer){
     beater = player.charAt(0).toUpperCase() + player.slice(1).toLowerCase();
     beaten = computer.charAt(0).toUpperCase() + computer.slice(1).toLowerCase();
     playerScore++;
-    invalid = false;
 }
 
 function loser(player, computer){
@@ -40,11 +39,17 @@ function loser(player, computer){
     beater = computer.charAt(0).toUpperCase() + computer.slice(1).toLowerCase();
     beaten = player.charAt(0).toUpperCase() + player.slice(1).toLowerCase();
     computerScore++;
-    invalid = false;
 }
 
 function playRound(playerSelect, computerSelect){
     playerSelect = playerSelect.toLowerCase();
+
+    if(gameOver === true){
+        playerScoreP.textContent = "You: " + playerScore;
+        computerScoreP.textContent = "Computer: " + computerScore;
+        winOutputDiv.textContent = "";
+        gameOver = false;
+    }
 
     if(playerSelect === computerSelect){
         resultsDiv.textContent = "Draw!";
@@ -72,15 +77,16 @@ function playRound(playerSelect, computerSelect){
     playerScoreP.textContent = "You: " + playerScore;
     computerScoreP.textContent = "Computer: " + computerScore;
     resultsDiv.textContent = result + beater + " beats " + beaten;
-}
 
-function game(){
-
-    if(playerScore > computerScore){
-        return "You won!";
-    }else{
-        return "Computer won. :(";
+    if(computerScore >= 5){
+        winOutputDiv.textContent = "You lost :(";
+        computerScore = 0;
+        playerScore = 0;
+        gameOver = true;
+    }else if(playerScore >= 5){
+        winOutputDiv.textContent = "You win!";
+        computerScore = 0;
+        playerScore = 0;
+        gameOver = true;
     }
 }
-
-winOutputDiv.textContent = game();
